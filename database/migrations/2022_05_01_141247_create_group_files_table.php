@@ -1,8 +1,5 @@
 <?php
 
-use App\Models\Group;
-use App\Models\User;
-use App\Models\Website;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -16,13 +13,13 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::create('discussions', function (Blueprint $table) {
+        Schema::create('group_files', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(User::class)->constrained();
-            $table->foreignIdFor(Website::class)->constrained();
-            $table->foreignIdFor(Group::class)->constrained();
-            $table->string('title');
-            $table->boolean('featured')->default(false);
+            $table->integer('group_fileable_id');
+            $table->string('group_fileable_type');
+            $table->string('path');
+            $table->string('name');
+            $table->json('detail');
             $table->timestamps();
         });
     }
@@ -34,6 +31,6 @@ return new class extends Migration {
      */
     public function down()
     {
-        Schema::dropIfExists('discussions');
+        Schema::dropIfExists('group_files');
     }
 };

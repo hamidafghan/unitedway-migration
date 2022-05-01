@@ -1,8 +1,5 @@
 <?php
 
-use App\Models\Group;
-use App\Models\User;
-use App\Models\Website;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -16,13 +13,10 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::create('discussions', function (Blueprint $table) {
+        Schema::create('categorable', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(User::class)->constrained();
-            $table->foreignIdFor(Website::class)->constrained();
-            $table->foreignIdFor(Group::class)->constrained();
-            $table->string('title');
-            $table->boolean('featured')->default(false);
+            $table->integer('categorable_id');
+            $table->string('categorable_type');
             $table->timestamps();
         });
     }
@@ -34,6 +28,6 @@ return new class extends Migration {
      */
     public function down()
     {
-        Schema::dropIfExists('discussions');
+        Schema::dropIfExists('categoryable');
     }
 };
