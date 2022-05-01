@@ -1,7 +1,5 @@
 <?php
 
-use App\Models\User;
-use App\Models\Website;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,13 +13,9 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::create('groups', function (Blueprint $table) {
+        Schema::create('subject_areas', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(User::class)->constrained();
-            $table->foreignIdFor(Website::class)->constrained();
-            $table->text('details');
-            $table->tinyInteger('type')->comment('Please use the PHP Enum and laravel casting');
-            $table->boolean('featured')->default(false);
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -33,6 +27,6 @@ return new class extends Migration {
      */
     public function down()
     {
-        Schema::dropIfExists('groups');
+        Schema::dropIfExists('subject_areas');
     }
 };

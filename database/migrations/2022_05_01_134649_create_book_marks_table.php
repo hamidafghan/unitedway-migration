@@ -1,7 +1,6 @@
 <?php
 
 use App\Models\User;
-use App\Models\Website;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,13 +14,11 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::create('groups', function (Blueprint $table) {
+        Schema::create('book_marks', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(User::class)->constrained();
-            $table->foreignIdFor(Website::class)->constrained();
-            $table->text('details');
-            $table->tinyInteger('type')->comment('Please use the PHP Enum and laravel casting');
-            $table->boolean('featured')->default(false);
+            $table->integer('book_markable_id');
+            $table->string('book_markable_type');
             $table->timestamps();
         });
     }
@@ -33,6 +30,6 @@ return new class extends Migration {
      */
     public function down()
     {
-        Schema::dropIfExists('groups');
+        Schema::dropIfExists('book_marks');
     }
 };
