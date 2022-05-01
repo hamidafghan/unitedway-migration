@@ -17,8 +17,7 @@ return new class extends Migration {
         Schema::create('book_marks', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(User::class)->constrained();
-            $table->integer('book_markable_id');
-            $table->string('book_markable_type');
+            $table->morphs('book_markable');
             $table->timestamps();
         });
     }

@@ -16,8 +16,7 @@ return new class extends Migration {
     {
         Schema::create('audienceable', function (Blueprint $table) {
             $table->foreignIdFor(Audience::class)->constrained();
-            $table->integer('audienceable_id');
-            $table->string('audienceable_type');
+            $table->morphs('audienceable');
         });
     }
 
