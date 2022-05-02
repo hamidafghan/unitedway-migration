@@ -7,8 +7,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
-
+return new class extends Migration
+{
     /**
      * Run the migrations.
      *
@@ -16,10 +16,10 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::create('events', function (Blueprint $table) {
+        Schema::create('trainings', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(User::class)->constrained();
-            $table->foreignIdFor(Website::class)->nullable()->constrained();
+            $table->foreignIdFor(Website::class)->constrained();
             $table->foreignIdFor(Group::class)->constrained();
             $table->string('title');
             $table->string('body');
@@ -34,6 +34,6 @@ return new class extends Migration {
      */
     public function down()
     {
-        Schema::dropIfExists('events');
+        Schema::dropIfExists('trainings');
     }
 };
